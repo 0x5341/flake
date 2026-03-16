@@ -1,0 +1,22 @@
+{
+  description = "A very basic flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    utils.url = "github:numtide/flake-utils";
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { nixpkgs, utils, fenix, ... }: utils.lib.eachDefaultSystem (system: 
+  let
+    toolchain = fenix.packages.${system}.fromToolchainFile { dir = ./.; sha256 = nixpkgs.lib.fakeSha256; };
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    devshells.default = pkgs.mkShell {
+      packages = [
+        toolchain
+      ];
+    };
+  });
+}
