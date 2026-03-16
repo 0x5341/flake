@@ -10,7 +10,7 @@
   let
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    devshells.default = pkgs.mkShell {
+    devShells.default = pkgs.mkShell {
       packages = with pkgs; [];
     };
   });

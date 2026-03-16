@@ -13,7 +13,7 @@
     toolchain = fenix.packages.${system}.fromToolchainFile { dir = ./.; sha256 = nixpkgs.lib.fakeSha256; };
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    devshells.default = pkgs.mkShell {
+    devShells.default = pkgs.mkShell {
       packages = [
         toolchain
       ];
