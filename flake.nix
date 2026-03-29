@@ -16,6 +16,10 @@
         path = ./rust;
         description = "rust standard template";
       };
+      zig = {
+        path = ./zig;
+        description = "zig standard template";
+      };
     };
   };
 }
