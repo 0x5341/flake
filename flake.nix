@@ -8,6 +8,10 @@
         description = "cross platform devshell template";
       };
       
+      ocaml = {
+        path = ./ocaml;
+        description = "ocaml standard template";
+      };
       rust = {
         path = ./rust;
         description = "rust standard template";
