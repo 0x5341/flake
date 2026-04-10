@@ -15,6 +15,8 @@
         ocaml
         dune
         ocamlPackages.utop
+        ocamlPackages.ocamlformat
+        ocamlPackages.ocaml-lsp
       ];
     };
   });
