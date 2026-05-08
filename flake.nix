@@ -8,6 +8,10 @@
         description = "cross platform devshell template";
       };
       
+      go = {
+        path = ./go;
+        description = "go standard template";
+      };
       ocaml = {
         path = ./ocaml;
         description = "ocaml standard template";
