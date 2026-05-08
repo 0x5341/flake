@@ -9,15 +9,25 @@
     zig.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, utils, zig, ... }: utils.lib.eachDefaultSystem (system: 
-  let
-    pkgs = nixpkgs.legacyPackages.${system};
-    zigpkgs = zig.packages.${system};
-  in {
-    devShells.default = pkgs.mkShell {
-      packages = [
-        zigpkgs.master
-      ];
-    };
-  });
+  outputs =
+    {
+      nixpkgs,
+      utils,
+      zig,
+      ...
+    }:
+    utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        zigpkgs = zig.packages.${system};
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = [
+            zigpkgs.master
+          ];
+        };
+      }
+    );
 }

@@ -8,15 +8,28 @@
     fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, utils, fenix, ... }: utils.lib.eachDefaultSystem (system: 
-  let
-    toolchain = fenix.packages.${system}.fromToolchainFile { dir = ./.; sha256 = nixpkgs.lib.fakeSha256; };
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    devShells.default = pkgs.mkShell {
-      packages = [
-        toolchain
-      ];
-    };
-  });
+  outputs =
+    {
+      nixpkgs,
+      utils,
+      fenix,
+      ...
+    }:
+    utils.lib.eachDefaultSystem (
+      system:
+      let
+        toolchain = fenix.packages.${system}.fromToolchainFile {
+          dir = ./.;
+          sha256 = nixpkgs.lib.fakeSha256;
+        };
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = [
+            toolchain
+          ];
+        };
+      }
+    );
 }
